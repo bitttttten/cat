@@ -1,15 +1,15 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { v4 } from 'node-uuid';
+import React from 'react'
+import { observer } from 'mobx-react'
+import { v4 } from 'node-uuid'
 
 const ContactList = observer(({ viewStore }) => {
-    const { contactList } = viewStore;
+    const { contactList } = viewStore
     switch (contactList.contacts.state) {
         default:
         case 'pending':
-            return <p>loading contacts</p>;
+            return <p>loading contacts</p>
         case 'rejected':
-            return <Error error={contactList.contacts.value} />;
+            return <Error error={contactList.contacts.value} />
         case 'fulfilled':
             return <ul>
                 {contactList.contacts.value.map(contact =>
@@ -17,8 +17,8 @@ const ContactList = observer(({ viewStore }) => {
                         {contact.firstName} {contact.lastName}
                     </li>
                 )}
-            </ul>;
+            </ul>
     }
-});
+})
 
-export default ContactList;
+export default ContactList

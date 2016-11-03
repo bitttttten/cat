@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import LoginForm from '../components/loginform';
+import LoginForm from '../components/loginform'
 
 const Login = ({ viewStore }) => {
     return <div className="login">
@@ -14,7 +14,7 @@ const Login = ({ viewStore }) => {
           performLogin={(...args) => viewStore.performLogin(...args)}
           afterLogin={() => viewStore.showHomepage()}
         />
-    </div>;
-};
+    </div>
+}
 
-export default Login;
+export default Login
