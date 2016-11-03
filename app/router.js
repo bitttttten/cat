@@ -1,6 +1,6 @@
-import { createHistory } from 'history';
-import { Router } from 'director';
-import { autorun } from 'mobx';
+import { createHistory } from 'history'
+import { Router } from 'director'
+import { autorun } from 'mobx'
 
 export default function startRouter(viewStore) {
     Router({
@@ -12,9 +12,9 @@ export default function startRouter(viewStore) {
     }).init();
 
     autorun(() => {
-        const path = viewStore.currentPath;
+        const path = viewStore.currentPath
         if (path !== window.location.pathname) {
-            window.history.pushState(null, null, path);
+            window.history.pushState(null, null, path)
         }
-    });
+    })
 }

@@ -1,36 +1,36 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import React from 'react'
+import { observer } from 'mobx-react'
 
-import Login from './containers/login';
-import ContactList from './containers/contactlist';
-import Thread from './containers/thread';
-import PostMessageForm from './containers/postmessageform';
+import Login from './containers/login'
+import ContactList from './containers/contactlist'
+import Thread from './containers/thread'
+import PostMessageForm from './containers/postmessageform'
 
 function renderView({ viewStore }) {
-    const view = viewStore.currentView;
+    const view = viewStore.currentView
 
     switch (view.name) {
         case 'homepage':
         case 'thread':
-            const items = [];
+            const items = []
             if (view.name === 'thread') {
-                items.push(<PostMessageForm viewStore={viewStore} key="postmessageform" />);
-                items.push(<button key="goback" onClick={() => viewStore.showHomepage()}>go back</button>);
+                items.push(<PostMessageForm viewStore={viewStore} key="postmessageform" />)
+                items.push(<button key="goback" onClick={() => viewStore.showHomepage()}>go back</button>)
             }
             return <div>
                 <Thread viewStore={viewStore} />
                 { items }
-            </div>;
+            </div>
         default:
-            return <div>404</div>;
+            return <div>404</div>
     }
 }
 
 const App = observer(({ viewStore }) => {
-    const { isAuthenticated } = viewStore;
+    const { isAuthenticated } = viewStore
 
     if (!isAuthenticated) {
-        return <Login viewStore={viewStore} />;
+        return <Login viewStore={viewStore} />
     }
 
     return <div className="view">
@@ -44,7 +44,7 @@ const App = observer(({ viewStore }) => {
         <div className="right">
             { renderView({ viewStore }) }
         </div>
-    </div>;
-});
+    </div>
+})
 
-export default App;
+export default App
