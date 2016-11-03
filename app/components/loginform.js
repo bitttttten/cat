@@ -16,10 +16,10 @@ class LoginForm extends Component {
         const { username, password } = this.details;
 
         if (!username) {
-            this.message = 'pls enter username';
+            this.message = this.props.messages.failUsername;
             return;
         } else if (!password) {
-            this.message = 'where is the password?';
+            this.message = this.props.messages.failPassword;
             return;
         }
 
@@ -29,10 +29,10 @@ class LoginForm extends Component {
             password,
             authenticated => {
                 if (authenticated) {
-                    this.message = 'login accepted';
+                    this.message = this.props.messages.loginAccept;
                     this.props.afterLogin();
                 } else {
-                    this.message = 'login failed';
+                    this.message = this.props.messages.loginFailed;
                 }
             }
         );
@@ -41,8 +41,9 @@ class LoginForm extends Component {
     render() {
         const { username, password, message } = this;
         return <form onSubmit={e => this.onSubmit(e)}>
+            <h1>hello!</h1>
             <h2>{message}</h2>
-            <input onChange={e => this.updateProperty('username', e.target.value)} value={username} type="text" />
+            <input onChange={e => this.updateProperty('username', e.target.value)} value={username} type="text" autoFocus />
             <input onChange={e => this.updateProperty('password', e.target.value)} value={password} type="password" />
             <button type="submit">Submit</button>
         </form>;

@@ -4,3 +4,65 @@
 
 @import "thread.less";
 @import "control.less";
+
+*, *:after, *:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    position: relative;
+}
+
+.login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 210px;
+    width: 203px;
+}
+
+.view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.left {
+    width: 200px;
+    height: 100%;
+    float: left;
+    background: grey;
+    color: #fff;
+    padding: 17px;
+}
+
+.right {
+    height: 100%;
+    padding: 17px;
+    margin-left: 200px;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+    margin-bottom: 0.5em;
+}
+
+.contactlist ul {
+    list-style-type: none;
+}
+    .contactlist li {
+        cursor: pointer;
+        height: 25px;
+        line-height: 25px;
+    }
+    .contactlist li:hover {
+        opacity: .75;
+    }

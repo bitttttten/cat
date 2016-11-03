@@ -6,37 +6,45 @@ import ContactList from './containers/contactlist';
 import Thread from './containers/thread';
 import PostMessageForm from './containers/postmessageform';
 
-function renderCurrentView({ viewStore }) {
+function renderView({ viewStore }) {
     const view = viewStore.currentView;
-    const { isAuthenticated } = viewStore;
-
-    if (!isAuthenticated) {
-        return <Login viewStore={viewStore} />;
-    }
 
     switch (view.name) {
         case 'homepage':
-            return <div>
-                <ContactList viewStore={viewStore} />
-            </div>;
         case 'thread':
+            const items = [];
+            if (view.name === 'thread') {
+                items.push(<PostMessageForm viewStore={viewStore} key="postmessageform" />);
+                items.push(<button key="goback" onClick={() => viewStore.showHomepage()}>go back</button>);
+            }
             return <div>
-                <ContactList viewStore={viewStore} />
                 <Thread viewStore={viewStore} />
-                <PostMessageForm viewStore={viewStore} />
-                <button onClick={() => viewStore.showHomepage()}>go back</button>
+                { items }
             </div>;
         default:
             return <div>404</div>;
     }
 }
 
-const App = observer(({ viewStore }) => (
-    <div>
-        <h1>Chat</h1>
-        <h2>{ viewStore.isAuthenticated ? `hello ${viewStore.currentUser}` : `` }</h2>
-        { renderCurrentView({ viewStore }) }
-    </div>
-));
+const App = observer(({ viewStore }) => {
+    const { isAuthenticated } = viewStore;
+
+    if (!isAuthenticated) {
+        return <Login viewStore={viewStore} />;
+    }
+
+    return <div className="view">
+        <div className="left">
+            <h1>Chat</h1>
+            <h2>{`hello ${viewStore.currentUser}`}</h2>
+            <div className="contactlist">
+                <ContactList viewStore={viewStore} />
+            </div>
+        </div>
+        <div className="right">
+            { renderView({ viewStore }) }
+        </div>
+    </div>;
+});
 
 export default App;

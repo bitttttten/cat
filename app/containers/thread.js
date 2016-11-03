@@ -4,13 +4,14 @@ import { v4 } from 'node-uuid';
 
 import Message from '../components/message';
 
-function renderThreadView({ state, reason, value }) {
+function renderThreadView({ state, value }) {
     switch (state) {
         default:
+            return <div>homepage</div>;
         case 'pending':
             return <p>loading..</p>;
         case 'rejected':
-            return <Error error={reason} />;
+            return <Error error={value} />;
         case 'fulfilled':
             if (value.length === 0) {
                 return <div>no messages</div>;
@@ -20,7 +21,7 @@ function renderThreadView({ state, reason, value }) {
 }
 
 const Thread = observer(({ viewStore }) => {
-    const thread = viewStore.currentView.thread;
+    const thread = viewStore.currentView.thread || {};
     return <div className="thread">
         { renderThreadView(thread) }
     </div>;

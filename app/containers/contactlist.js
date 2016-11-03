@@ -9,7 +9,7 @@ const ContactList = observer(({ viewStore }) => {
         case 'pending':
             return <p>loading contacts</p>;
         case 'rejected':
-            return <Error error={contactList.contacts.reason} />;
+            return <Error error={contactList.contacts.value} />;
         case 'fulfilled':
             return <ul>
                 {contactList.contacts.value.map(contact =>

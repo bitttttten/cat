@@ -1,5 +1,6 @@
 import { observable, computed, action } from 'mobx';
 import { fromPromise } from 'mobx-utils';
+import { v4 } from 'node-uuid';
 
 export default class ViewStore {
     @observable contacts = require('./data/contacts.json');
@@ -8,27 +9,42 @@ export default class ViewStore {
     @observable currentUser = null;
     @observable currentView = null;
     @observable currentThread = [];
+    @observable cachedThreads = {};
 
-    @action submitMessage({ chat, id }) {
-        this.chats[id].push({
-            chat
-        });
+    @action submitMessage({ message }) {
+        const { threadId } = this.currentView;
+        this.cachedThreads[threadId] = this.cachedThreads[threadId] || {};
+        const id = v4();
+        this.cachedThreads[threadId].push({ message, id });
+        this.showThread(threadId);
     }
 
     @action showHomepage() {
+        this.currentThread = null;
         this.currentView = {
             name: 'homepage'
         };
     }
 
     @action showThread(threadId) {
-        const messages = this.threads.filter(() => Math.random() < 0.2);
-        this.currentThread = messages;
-        this.currentView = {
-            name: 'thread',
-            threadId,
-            thread: fromPromise(new Promise(resolve => resolve(this.currentThread)))
-        };
+        const name = 'thread';
+        if (this.cachedThreads[threadId]) {
+            this.currentView = {
+                name,
+                threadId,
+                thread: fromPromise(new Promise(resolve => resolve(this.cachedThreads[threadId])))
+            };
+        } else {
+            const messages = this.threads.filter(() => Math.random() < 0.2);
+            this.currentView = {
+                name,
+                threadId,
+                thread: fromPromise(new Promise(resolve => {
+                    this.cachedThreads[threadId] = messages;
+                    resolve(messages);
+                }))
+            };
+        }
     }
 
     @action performLogin(username, password, callback) {
