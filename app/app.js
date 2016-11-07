@@ -30,7 +30,11 @@ const App = observer(({ viewStore }) => {
     const { isAuthenticated } = viewStore
 
     if (!isAuthenticated) {
-        return <Login viewStore={viewStore} />
+        return <Login
+          viewStore={viewStore}
+          performLogin={(...args) => viewStore.performLogin(...args)}
+          afterLogin={() => viewStore.showHomepage()}
+        />
     }
 
     return <div className="view">

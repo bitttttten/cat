@@ -1,6 +1,5 @@
 button {
     display: inline-block;
-    font-size: 1rem;
     line-height: 1.5;
     text-align: center;
     cursor: pointer;
@@ -8,13 +7,13 @@ button {
     border-radius: 4px;
     margin-bottom: 1rem;
     padding: 0.5rem 1.5rem;
-    background-color: @green;
-    color: #fff;
+    background-color: @brand-primary;
+    color: @text-primary;
     box-shadow: inset 0 -0.1rem 0 rgba(0,0,0,0.25), 0 0.1rem 0 rgba(0,0,0,0.1);
     vertical-align: middle;
 
     &:hover {
-        background-color: @green-darker;
+        background-color: lighten(@brand-primary, 5%);
     }
 }
 
@@ -22,7 +21,9 @@ input {
     padding: 0 1rem;
     min-width: 150px;
     height: 32px;
-    border: 1px solid @green;
+    border: 0;
+    background: @text-primary;
+    color: @brand-dark;
     outline: none;
     border-radius: 3px;
     display: block;

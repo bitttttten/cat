@@ -62,7 +62,7 @@ export default class ViewStore {
 
     @computed get contactList() {
         return {
-            contacts: fromPromise(new Promise(resolve => resolve(this.contacts)))
+            contacts: fromPromise(new Promise(resolve => setTimeout(() => resolve(this.contacts), 1000)))
         };
     }
 

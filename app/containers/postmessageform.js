@@ -18,7 +18,7 @@ class PostMessageForm extends React.Component {
         return <div className="postmessageform">
             <form onSubmit={e => this.onSubmit(e)}>
                 <input type="text" onChange={e => { this.message = e.target.value }} value={message} autoFocus />
-                <button>Send</button>
+                <button>send</button>
             </form>
         </div>
     }

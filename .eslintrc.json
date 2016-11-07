@@ -15,6 +15,7 @@
         "babel"
     ],
     "rules": {
+        "no-case-declarations": [0],
         "semi": [0],
         "max-len": [0],
         "global-require": "off",

@@ -34,13 +34,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    background: @brand-neutral;
 }
 
 .left {
     width: 200px;
     height: 100%;
     float: left;
-    background: grey;
+    background: @brand-dark;
     color: #fff;
     padding: 17px;
 }
@@ -63,6 +64,7 @@ h1,h2,h3,h4,h5,h6,p {
         height: 25px;
         line-height: 25px;
     }
-    .contactlist li:hover {
-        opacity: .75;
+    .contactlist li:hover,
+    .contactlist .active {
+        color: @brand-primary;
     }
