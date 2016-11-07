@@ -6,9 +6,13 @@ import LoginForm from '../components/loginform'
 
 @observer
 class Login extends React.Component {
+    constructor(props) {
+        super(props)
+        this.updateProperty = this.updateProperty.bind(this)
+    }
+
     @observable details = JSON.parse(localStorage.getItem('details')) || {}
     @observable message = 'login pls'
-
     messages = {
         loginFailed: 'login failed',
         loginAccept: 'login accepted',
@@ -56,7 +60,7 @@ class Login extends React.Component {
               message={this.message}
               details={this.details}
               onSubmit={e => this.onSubmit(e)}
-              onChange={this.updateProperty.bind(this)}
+              onChange={this.updateProperty}
             />
         </div>
     }
