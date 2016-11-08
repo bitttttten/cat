@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'lol'",
+    "start": "node index.js",
     "start:dev": "webpack-dev-server --config config/webpack.config.dev.js",
-    "start:prod": "webpack -p --config config/webpack.config.prod.js"
+    "build:prod": "webpack -p --config config/webpack.config.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -45,5 +46,10 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "logfmt": "^1.2.0"
   }
 }
