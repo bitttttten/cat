@@ -35,7 +35,7 @@ export default class ViewStore {
                 thread: fromPromise(new Promise(resolve => resolve(this.cachedThreads[threadId])))
             };
         } else {
-            const messages = this.threads.filter(() => Math.random() < 0.2);
+            const messages = this.threads.filter(() => Math.random() < 0.2).map(m => { var b = m; b.isClientMessage = Math.random() < 0.5; return b; });
             this.currentView = {
                 name,
                 threadId,
