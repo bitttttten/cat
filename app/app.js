@@ -14,8 +14,9 @@ function renderView({ viewStore }) {
         case 'thread':
             const items = []
             if (view.name === 'thread') {
-                items.push(<PostMessageForm viewStore={viewStore} key="postmessageform" />)
-                items.push(<button key="goback" onClick={() => viewStore.showHomepage()}>go back</button>)
+                items.push(<PostMessageForm viewStore={viewStore} key="postmessageform">
+                        <button key="goback" onClick={() => viewStore.showHomepage()}>go back</button>
+                    </PostMessageForm>)
             }
             return <div>
                 <Thread viewStore={viewStore} />
