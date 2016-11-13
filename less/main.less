@@ -47,6 +47,7 @@ body {
 }
 
 .right {
+    position: relative;
     height: 100%;
     padding: 17px;
     margin-left: 200px;
@@ -68,3 +69,22 @@ h1,h2,h3,h4,h5,h6,p {
     .contactlist .active {
         color: @brand-primary;
     }
+
+.postmessageform {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 17px;
+    padding-right: 17px;
+    width: 100%;
+    input[type="text"] {
+        float: left;
+        margin-right: 17px;
+    }
+    form {
+        float: left;
+        & + button {
+            float: right;
+        }
+    }
+}
